@@ -75,8 +75,10 @@ with tf.variable_scope("rfftDenseNet"):
 	h_conv2_im = tf.nn.relu(tf.layers.dense(h_conv1_im, 256))
 
 	zoutfft = tf.complex(h_conv2_re, h_conv2_im)
-
+	
 	#Complete analysis
+	"""this part didn't seemed to incress performances. but it works fine.
+	make sure to uncomment 68 & 69, and comment 97"""
 	# h_conv1_arg = tf.nn.relu(tf.layers.dense(x_fd_arg, 512))
 	# h_conv2_arg = tf.nn.relu(tf.layers.dense(h_conv1_arg, 256))
 
@@ -180,11 +182,3 @@ for epoch in range(num_steps):
 	if (epoch%10) == 0:
 		s = sess.run(smry_cnn,feed_dict={x: batch_xs, y_: batch_ys, times: runs})
 		writer.add_summary(s,epoch)
-
-#Adding final runs
-
-s = sess.run(smry_fft,feed_dict={x: batch_xs, y_: batch_ys, times: runs})
-writer.add_summary(s,epoch)
-
-s = sess.run(smry_cnn,feed_dict={x: batch_xs, y_: batch_ys, times: runs})
-writer.add_summary(s,epoch)
