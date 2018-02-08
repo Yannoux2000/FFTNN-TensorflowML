@@ -10,3 +10,7 @@ the main interest for the FFTNN is that it offers way better performances concer
 5 batches of 128 on CNN, against 60 batches on FFTNN
 
 check this out on your setup ;)
+
+# Details and thoughs on this
+
+This algorithm is just like a convolution (the fftnn) it is concidered that converting a convolution in time domain, into a multiplication in an transformed domain, would be equivalent. and it is. This algorithm is a proof, if you were still skeptical, like i was. the main advantages from this algorithm are dense, it can be applied to a 2d image since images have a determined width. this makes a dot on a drawing periodic. It can adapt from slightly different sizes (i runned this algorithm with an fftlength shorter than the images one, and it stills perform pretty good. i have to check one thing about reshaping an array in tensorflow. this might be the reason why fft was faster than cnn, because of resize time. which i realized recently can be really slow in some computers, like mine.
